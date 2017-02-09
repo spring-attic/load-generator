@@ -1,5 +1,5 @@
 /*
- * Copyright 2015-2016 the original author or authors.
+ * Copyright 2015-2017 the original author or authors.
  *
  * Licensed under the Apache License, Version 2.0 (the "License");
  * you may not use this file except in compliance with the License.
@@ -20,51 +20,40 @@ import static org.junit.Assert.assertEquals;
 
 import java.util.ArrayList;
 import java.util.List;
-import java.util.Properties;
 
-import org.junit.BeforeClass;
 import org.junit.Test;
 import org.junit.runner.RunWith;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.boot.autoconfigure.SpringBootApplication;
-import org.springframework.boot.test.SpringApplicationConfiguration;
-import org.springframework.cloud.stream.annotation.Bindings;
-import org.springframework.cloud.stream.app.test.PropertiesInitializer;
+import org.springframework.boot.test.context.SpringBootTest;
 import org.springframework.cloud.stream.messaging.Source;
 import org.springframework.cloud.stream.test.binder.MessageCollector;
 import org.springframework.messaging.Message;
-import org.springframework.test.context.junit4.SpringJUnit4ClassRunner;
+import org.springframework.test.context.TestPropertySource;
+import org.springframework.test.context.junit4.SpringRunner;
 
 /**
  * Tests for LoadGeneratorSource.
  *
  * @author Glenn Renfro
  * @author Gary Russell
+ * @author Thomas Risberg
  */
-@RunWith(SpringJUnit4ClassRunner.class)
-@SpringApplicationConfiguration(classes = LoadGeneratorSourceTests.LoadGeneratorSourceApplication.class,
-								initializers = PropertiesInitializer.class)
+@RunWith(SpringRunner.class)
+@SpringBootTest
+@TestPropertySource(properties = {
+		"load-generator.producers:1",
+		"load-generator.messageSize:1000",
+		"load-generator.messageCount:1",
+		"load-generator.generateTimestamp:false"})
 public class LoadGeneratorSourceTests {
 
 	@Autowired
-	@Bindings(LoadGeneratorSourceConfiguration.class)
 	protected Source channels;
-
 
 	@Autowired
 	protected MessageCollector messageCollector;
-
-	@BeforeClass
-	public static void configureProperties() throws Throwable {
-
-		Properties properties = new Properties();
-		properties.put("load-generator.producers", 1);
-		properties.put("load-generator.messageSize", 1000);
-		properties.put("load-generator.messageCount", 1);
-		properties.put("load-generator.generateTimestamp", false);
-		PropertiesInitializer.PROPERTIES = properties;
-	}
 
 	@Test
 	public void testForOneMessage() {
