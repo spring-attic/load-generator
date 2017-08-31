@@ -28,7 +28,6 @@ $$load-generator.message-size$$:: $$<documentation missing>$$ *($$Integer$$, def
 $$load-generator.producers$$:: $$<documentation missing>$$ *($$Integer$$, default: `$$1$$`)*
 //end::configuration-properties[]
 
-//end::ref-doc[]
 == Build
 
 ```
@@ -45,3 +44,5 @@ $ ./mvnw clean package
 ```
 java -jar load-generator-source.jar
 ```
+
+//end::ref-doc[]
