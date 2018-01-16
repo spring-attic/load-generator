@@ -46,7 +46,8 @@ import org.springframework.test.context.junit4.SpringRunner;
 		"load-generator.producers:1",
 		"load-generator.messageSize:1000",
 		"load-generator.messageCount:1",
-		"load-generator.generateTimestamp:false"})
+		"load-generator.generateTimestamp:false",
+		"spring.cloud.stream.bindings.output.contentType=application/octet-stream"})
 public class LoadGeneratorSourceTests {
 
 	@Autowired
