@@ -1,2 +1,2 @@
 org.springframework.boot.env.EnvironmentPostProcessor=\
-  org.springframework.cloud.stream.app.load.generator.source.ContentTypeEnvironmentPostProcessor
+  org.springframework.cloud.stream.app.postprocessor.ContentTypeEnvironmentPostProcessor
