@@ -47,6 +47,7 @@
 							<extraTestConfigClass>org.springframework.cloud.stream.app.test.loadgenerator.LoadGeneratorSourceTestConfiguration.class</extraTestConfigClass>
 						</load-generator-source>
 					</generatedApps>
+					<enableContainerImageMetadata>true</enableContainerImageMetadata>
 				</configuration>
 			</plugin>
 		</plugins>
